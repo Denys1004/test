@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="success_page_container">
+        <div class="page_container">
+            <div class="display_flex">
+                <h1>Hello {{ cur_user.first_name }}!</h1>
+                <a href="/logout">Logout</a>
+                <a class="btn btn-warning" href="/create_new_job">New job</a>
+            </div>
+            <hr>
+            <h3>All {{ cur_user.first_name }}'s jobs!</h3>
+            <table class="table table-bordered mt-1">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Job</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in all_jobs %}
+                        {% if job.executor != null and job.executor.id == request.session.user_id %}
+                        <!-- if logged user doing this job, display this -->
+                        <tr>
+                            <td>{{ job.title }}</td>
+                            <td>
+                                <a href="view/{{job.id}}">View | </a> 
+                                <a href="done_job/{{job.id}}">Done |</a>  
+                                <a href="giveup_job/{{job.id}}">GiveUp</a>
+                            </td>                        
+                        </tr>
+                        {% endif%}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h3>Everyone's jobs</h3>
+            <table class="table table-bordered mt-1">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Posted</th>
+                        <th>Job</th>
+                        <th>Location</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in all_jobs %}
+                        {% if job.executor == null or job.executor.id != request.session.user_id %}
+                        <!-- if nobody does this job or other user doing this job -->
+                        <tr>
+                            <td>{{ job.created_at|date:"SHORT_DATE_FORMAT" }}</td>
+                            <td>{{ job.title }}</td>
+                            <td>{{ job.location }}</td>
+
+                            <td>
+                                <a href="view/{{job.id}}">View |</a>  
+                                {% if job.poster.id == request.session.user_id %}
+                                    <a href="remove_job/{{job.id}}">Remove |</a>  
+                                    <a href="edit_job/{{job.id}}">Edit |</a> 
+                                {% endif %}
+                                {%if job.executor.id == null %}
+                                    <a href="add_job/{{job.id}}">Add</a>
+                                {% endif %}
+                            </td>          
+                        </tr>
+                        {% endif %}                       
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <hr>
+
+            <h3 class="mt-5">Our Users</h3>
+            <table class="table table-bordered mt-1">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>User</th>
+                        <th>Birthdate</th>
+                        <th>Posted jobs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.first_name }} {{user.last_name}}</td>
+                        <td>{{ user.birth_date|date:"SHORT_DATE_FORMAT" }}</td>
+                        <td>{{ user.poster.count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="image_knifes_container_left">
+        <img  id="left" src="{% static 'images/10.png' %}" alt="knifes">
+    </div>
+    <div class="image_knifes_container_right">
+        <img  id="right" src="{% static 'images/11.png' %}" alt="knifes">
+    </div>
+
+    
+
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+</body>
+</html>
+

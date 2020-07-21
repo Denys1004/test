@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script defer src="{% static 'js/main1.js' %}"></script>
+</head>
+<body>
+    <div class="welcome_page_container">
+        <div class="page_container">
+            <div class="display_flex">
+                <h1 class="ninja">registration</h1>
+                <a href="/login">Back to Login</a>
+                <a href="/">Home</a>
+            </div>
+            {% if messages %}                                                                      				 	
+            <ul class="messages">                                           								
+                {% for message in messages %}                                       							
+                    <li class="errors">{{ message }}</li>       									
+                {% endfor %}                                                								
+            </ul>                                                      									
+            {% endif %} 
+            <!-- REGISTER -->
+            <form action="/register" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" class="form-control" id="first_name" value = "{{request.session.first_name}}">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" class="form-control" id="last_name" value = "{{request.session.last_name}}">
+                </div>
+                <div class="form-group">
+                    <label for="birth_date">Birthdate:</label>
+                    <input type="date" name="birth_date" class="form-control" id="birth_date" value = "{{request.session.birth_date}}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" class="form-control" id="email" value = "{{request.session.email}}">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="password" name="confirm_password" class="form-control" id="confirm_password">
+                </div>
+                <button class="btn btn-light">Register</button>
+            </form>
+            <div class="reg_ninja_eyes_container">
+                <img src="{% static 'images/Ninja_eyes_appears.gif' %}" alt="img_ninja_eyes">
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

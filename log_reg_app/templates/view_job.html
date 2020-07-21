@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="success_page_container">
+        <div class="page_container">
+            <div class="display_flex">
+                <h1>Hello {{ cur_user.first_name }}! These are the job details!</h1>
+                <a href="/logout">Logout</a>
+                <a href="/dashboard">Dashboard</a>
+            </div>
+            <hr>
+            <h2>{{needed_job.title}}</h2>    
+            <p>{{needed_job.description}}</p>
+            <p>Posted by {{needed_job.poster.first_name}}, {{needed_job.created_at}}</p>
+            <p>Categories: 
+                {% for category in needed_job.categories.all %}
+                <span class='cat_desc'>{{category.name}}<span class='cat_dev'> | </span></span>
+                {% endfor %}
+            </p>  
+
+
+
+            {%if needed_job.executor.id == null %}
+            <a class='btn btn-warning' href="/add_job/{{needed_job.id}}">Add to my list</h3></a>
+            {% endif %}
+            {% if needed_job.executor != null and needed_job.executor.id == request.session.user_id %}
+            <a class='btn btn-warning' href="/giveup_job/{{needed_job.id}}">Give up this job</a>
+            {% endif %}
+
+        </div>
+    </div>
+
+</body>
+</html>
+

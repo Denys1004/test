@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script defer src="{% static 'js/welcome.js' %}"></script>
+</head>
+<body>
+    <div class="welcome_page_container">
+        <div id="welcome_page">
+            <div class="left">
+                <img id="logo_img" src="{% static 'images/6.jpg' %}" alt="logo_img">
+            </div>
+            <div class="right">
+                <!-- <h2>Welcome to My</h2> -->
+                <div class="title_container">
+                    <h1 class="title_exam top">ninja</h1>
+                    <h1 class="title_exam bottom">exam</h1>
+                </div>
+                <h3><a href="/login">Login</a> or <a href="/register">Register</a></h3>
+                <img id="red_img" src="{% static 'images/8.png' %}" alt="logo_img">
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>

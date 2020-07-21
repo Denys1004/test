@@ -1,0 +1,248 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+a{
+    color: red;
+}
+
+body{
+    background-color: rgb(208, 208, 208);
+}
+/* WELCOME PAGE */
+.welcome_page_container{
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    z-index: -2;
+}
+
+#welcome_page{
+    max-width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: 80px 0 0;
+}
+
+#logo_img{
+    height: 80vh;
+    width: auto;
+}
+
+.right{
+    /* font-family: 'Trade Winds', cursive; */
+    position: relative;
+    color: white;
+    text-align: center;
+    z-index: 2;
+    padding: 20px 0 0 60px;
+}
+#red_img{
+    position: absolute;
+    z-index: -1;
+    top:-15px;
+    left:45px;
+}
+h2{
+    margin-bottom: 60px;
+}
+h3{
+    margin-top: 60px;
+}
+.title_exam{
+    font-family: 'Trade Winds', cursive;
+    font-size: 160px;
+}
+.ninja{
+    font-family: 'Trade Winds', cursive;
+    font-size: 30px;
+    color: red;
+}
+.top{
+    margin-bottom: -40px;
+    padding-bottom: 0;
+}
+.bottom{
+    margin-top: 0;
+    padding-top: 0;
+}
+.errors{
+    color: red;
+    list-style: none;
+}
+/* LOGIN PAGE */
+
+.page_container{
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    z-index: 2;
+}
+.welcome_page_container > .page_container > .display_flex{
+    margin-top: 50px;
+}
+
+.welcome_page_container > .page_container > form{
+    color: white;
+}
+
+#link_to_new_user{
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+
+#forms_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+#forms_container > form{
+    flex: 1;
+    margin: 0 40px;
+}
+
+.sucsess{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.head_message{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.bottom_message{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50%;
+    align-items: center;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#display_messages{
+    background-color: rgb(228, 228, 228);
+    padding: 20px 30px;
+}
+.like{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.like > a{
+    margin: 0 4px;
+}
+ion-icon {
+    color: #007bff;
+    font-size: 18px;
+}
+
+.likess{
+    margin-bottom: 0;
+    color: #007bff;;
+}
+
+.comment_container{
+    font-style: italic;
+    color:rgb(131, 131, 131);
+
+}
+.comment_p{
+    margin: 0;
+    padding: 20px 0 0;
+    color: black;
+}
+.posted_info{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50%;
+    align-items: center;
+}
+.warning{
+    color: red;
+}
+
+#login_a{
+    color: rgb(156, 200, 254);
+    font-size: 25px;
+    letter-spacing: 2px;
+    margin: 0 5px;
+}
+
+.display_flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ninja_eyes_container{
+    text-align: center;
+}
+.ninja_eyes_container > img{
+    margin: 120px 0 0;
+
+}
+
+.reg_ninja_eyes_container{
+    text-align: center;
+}
+
+.reg_ninja_eyes_container > img{
+    width: 500px;
+}
+
+
+.success_page_container{
+    height: 100%;
+    min-height: 100vh;
+}
+
+.image_knifes_container_left{
+    position: relative;
+}
+
+.image_knifes_container_left > #left{
+    position: absolute;
+    left: -100px;
+    bottom:100%;
+    z-index: -1;
+}
+
+.image_knifes_container_right{
+    position: relative;
+} 
+
+.image_knifes_container_right > #right{
+    position: absolute;
+    bottom: -80px;
+    right: 0;
+    z-index: -1;
+}
+
+table{
+    background-color: white;
+}
+
+.cat_desc{
+    font-style: italic;
+    color: grey;
+}
+
+
+.cat_dev{
+    color: rgb(1, 1, 1);
+}

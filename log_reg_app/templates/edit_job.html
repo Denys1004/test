@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="success_page_container">
+        <div class="page_container">
+            <div class="display_flex">
+                <h1>Hello {{ cur_user.first_name }}! Lets Edit your job</h1>
+                <a href="/logout">Logout</a>
+                <a href="/dashboard">Dashboard</a>
+            </div>
+            {% if messages %}                                                                      				 	
+            <ul class="messages">                                           								
+                {% for message in messages %}                                       							
+                    <li class="errors">{{ message }}</li>       									
+                {% endfor %}                                                								
+            </ul>                                                      									
+            {% endif %} 
+            <hr>
+
+            <form action="/edit_job/{{needed_job.id}}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" class="form-control" id="title" value="{{needed_job.title}}">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input type="text" name="description" class="form-control" id="description" value="{{needed_job.description}}">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" name="location" class="form-control" id="location" value="{{needed_job.location}}">
+                </div>
+                <div class="form-group">
+                    <label for='category'>Categories:</label> <br>
+                        {% for category in all_categories %}
+                        {{category.name}}<input type="checkbox" name="category" value ="{{category.id}}" > <br>
+                        {% endfor %}
+                        <br>
+                        Other category <input type="text" name="other"> 
+                </div>
+
+
+
+
+
+
+
+
+                
+                <p>Added Categories: 
+                    <ul>
+                        {% for category in needed_job.categories.all %}
+                        <li>{{category.name}}  
+                            {% if needed_job.poster.id == cur_user.id %}
+                            <a href="/remove_category/{{category.id}}/{{needed_job.id}}">| Remove</a>
+                            {% endif%}
+                        </li> 
+                        {% endfor %}
+                    </ul>
+                </p>  
+                <button>Update Job</button>
+            </form>
+            <br>
+            <a class="btn btn-warning" href="/create_new_job">Cancel</a>         
+        </div>
+    </div>
+
+</body>
+</html>
+

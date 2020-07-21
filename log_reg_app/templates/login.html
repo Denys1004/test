@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script defer src="{% static 'js/login.js' %}"></script>
+</head>
+<body>
+    <div class="welcome_page_container">
+        <div class="page_container">
+            <div class="display_flex">
+                <h1 class="ninja">login</h1>
+                <a href="/">Home</a>
+            </div>
+            {% if messages %}                                                                      				 	
+            <ul class="messages">                                           								
+                {% for message in messages %}                                       							
+                    <li class="errors">{{ message }}</li>       									
+                {% endfor %}                                                								
+            </ul>                                                      									
+            {% endif %} 
+            <!-- LOGIN -->
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" class="form-control" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                </div>
+                <button class="btn btn-light">Login</button>
+            </form>
+            <div id="link_to_new_user">
+                <a class="btn btn-danger" href="/register" >Register New User</a>
+            </div>
+            <div class="ninja_eyes_container">
+                <img src="{% static 'images/Ninja_eyes_appears.gif' %}" alt="img_ninja_eyes">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
